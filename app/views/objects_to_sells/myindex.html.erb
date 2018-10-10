@@ -1,0 +1,27 @@
+<h1>Listing My Objects to sell | <%= link_to 'Add New Object', new_objects_to_sell_path, class: 'btn btn-success'%> </h1>
+<br>
+<br>
+
+
+<div class="row">
+   <% @objects_to_sells.each do |objects_to_sell| %>
+  <div class="col-sm-6 col-md-3">
+    <div class="thumbnail">
+      <%= image_tag(objects_to_sell.image.thumb.url, alt: 'Image') if objects_to_sell.image? %>
+      <div class="caption">
+        <h3><%= objects_to_sell.name %></h3>
+        <p><%= truncate(objects_to_sell.description, :length => 200) %></p>
+        <div class="badge badge-info text-block"> 
+        <p><%= number_to_currency(objects_to_sell.price) %></p>
+        </div>
+        <p>
+          <%= link_to 'Show', objects_to_sell, class: 'btn btn-success'%>
+          <%= link_to 'Edit', edit_objects_to_sell_path(objects_to_sell), class: 'btn btn-info' %>
+          <%= link_to 'Destroy', objects_to_sell, method: :delete, data: { confirm: 'Are you sure?' } , class: 'btn btn-danger' %>
+        </p>
+      </div>
+    </div>
+  </div>
+  <% end %>
+</div>
+

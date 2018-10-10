@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<%= image_tag(@event.image.thumb.url, alt: 'Image') if @event.image? %>
+
+
+<p>
+  <strong>Name:</strong>
+  <%= @event.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @event.description %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @event.price %>
+</p>
+<br>
+
+<h2> <%= @event.comments.count %> Comment(s)</h2>
+  
+  <%= render @event.comments%>
+  <h3> Add a comment: </h3>
+
+  <%= render 'comments/form'%>
+<br>
+
+<% if @event.user_id == current_user.id %>
+<%= link_to 'Edit', edit_event_path(@event) %>|
+<% end %>
+<%= link_to 'Back', events_path %>

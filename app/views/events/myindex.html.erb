@@ -1,0 +1,27 @@
+<h1>Listing My Events | <%= link_to 'Add New Event', new_event_path, class: 'btn btn-success'%></h1>
+<br>
+<br>
+
+
+<div class="row">
+   <% @events.each do |event| %>
+  <div class="col-sm-6 col-md-3">
+    <div class="thumbnail">
+      <%= image_tag(event.image.thumb.url, alt: 'Image') if event.image? %>
+      <div class="caption">
+        <h3><%= event.title %></h3>
+        <p><%= truncate(event.description, :length => 200) %></p>
+        <div class="badge badge-info text-block"> 
+        <p><%= number_to_currency(event.price) %></p>
+        </div>
+        <p>
+          <%= link_to 'Show', event, class: 'btn btn-success'%>
+          <%= link_to 'Edit', edit_event_path(event), class: 'btn btn-info' %>
+          <%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } , class: 'btn btn-danger' %>
+        </p>
+      </div>
+    </div>
+  </div>
+  <% end %>
+</div>
+

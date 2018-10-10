@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+
+<%= image_tag(@objects_to_sell.image.thumb.url, alt: 'Image') if @objects_to_sell.image? %>
+
+
+<p>
+  <strong>Name:</strong>
+  <%= @objects_to_sell.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @objects_to_sell.description %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @objects_to_sell.price %>
+</p>
+
+<% if @objects_to_sell.user_id == current_user.id %>
+<%= link_to 'Edit', edit_objects_to_sell_path(@objects_to_sell) %>|
+<% end %>
+<%= link_to 'Back', objects_to_sells_path %>
+
+ 
+
+
